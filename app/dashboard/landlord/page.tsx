@@ -1,7 +1,7 @@
 import React from "react";
 
-const landloadPage = () => {
-  return <div>landloadPage</div>;
+const page = () => {
+  return <div>landloard property list takbe page</div>;
 };
 
-export default landloadPage;
+export default page;

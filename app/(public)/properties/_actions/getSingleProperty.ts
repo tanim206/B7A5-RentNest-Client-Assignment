@@ -1,0 +1,12 @@
+"use server";
+
+export const getSingleProperty = async (id: string) => {
+  const res = await fetch(
+    `${process.env.BACKEND_API_URL}/api/properties/${id}`,
+    {
+      cache: "no-store",
+    },
+  );
+
+  return await res.json();
+};

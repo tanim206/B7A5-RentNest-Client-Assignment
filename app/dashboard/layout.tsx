@@ -1,15 +1,23 @@
 import { Navbar } from "@/components/shared/navber";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { getMe } from "@/service/getMe";
+import DashboardSidebar from "./_components/dashboardSidebar";
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getMe();
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen">
       <Navbar user={user} />
 
-      <div className="flex flex-1">
-        <main className="flex-1 min-w-0">{children}</main>
-      </div>
+      <SidebarProvider>
+        <DashboardSidebar user={user} />
+
+        {/* Main Content */}
+        <main className="fixed top-16 left-64 right-0 bottom-0 overflow-y-auto bg-slate-50">
+          <div className="p-6">{children}</div>
+        </main>
+      </SidebarProvider>
     </div>
   );
 };
