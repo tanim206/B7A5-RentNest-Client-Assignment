@@ -8,8 +8,8 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
     icon: LayoutDashboard,
   },
   {
-    label: "My Posts",
-    href: "/dashboard/my-posts",
+    label: "Rental Request",
+    href: "/dashboard/tenant/rentals",
     icon: FileText,
   },
 ];

@@ -11,14 +11,17 @@ type Props = {
 
 export default function PublicPropertyCard({ property }: Props) {
   return (
-    <Card className="overflow-hidden rounded-xl transition hover:shadow-xl">
+    <Card className="overflow-hidden rounded-xl border transition-all hover:-translate-y-1 hover:shadow-xl">
+      {/* Property Image Placeholder */}
       <div className="flex h-52 items-center justify-center bg-slate-100">
         <Home className="h-14 w-14 text-slate-400" />
       </div>
 
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="line-clamp-1">{property.title}</CardTitle>
+      <CardHeader className="space-y-3">
+        <div className="flex items-center justify-between gap-2">
+          <CardTitle className="line-clamp-1 text-xl">
+            {property.title}
+          </CardTitle>
 
           <Badge
             variant={
@@ -37,7 +40,7 @@ export default function PublicPropertyCard({ property }: Props) {
         </p>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5">
         <p className="line-clamp-3 text-sm text-muted-foreground">
           {property.description}
         </p>
@@ -45,24 +48,14 @@ export default function PublicPropertyCard({ property }: Props) {
         <div className="flex items-center justify-between">
           <Badge variant="outline">{property.propertyType}</Badge>
 
-          <div className="flex items-center gap-1 font-semibold">
+          <div className="flex items-center gap-1 text-lg font-semibold">
             <DollarSign size={16} />৳ {property.price}
           </div>
         </div>
 
-        <div className="flex gap-2">
-          <Button asChild className="flex-1">
-            <Link href={`/properties/${property.id}`}>View Details</Link>
-          </Button>
-
-          <Button
-            asChild
-            variant="outline"
-            disabled={property.availabilityStatus !== "AVAILABLE"}
-          >
-            <Link href={`/booking/${property.id}`}>Request</Link>
-          </Button>
-        </div>
+        <Button asChild className="w-full">
+          <Link href={`/properties/${property.id}`}>View Details</Link>
+        </Button>
       </CardContent>
     </Card>
   );

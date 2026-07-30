@@ -25,7 +25,7 @@ export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   },
   {
     label: "Rental Requests",
-    href: "/dashboard/landlord/requests",
+    href: "/dashboard/landlord/request",
     icon: ClipboardList,
   },
   {

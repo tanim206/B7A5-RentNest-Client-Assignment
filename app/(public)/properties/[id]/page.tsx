@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { MapPin, Home, CheckCircle2, ShieldCheck, Tag } from "lucide-react";
+
 import { getSingleProperty } from "../_actions/getSingleProperty";
+import RequestRentalButton from "../_components/RequestRentalButton";
+import { getMe } from "@/service/getMe";
 
 const PropertyDetailsPage = async ({
   params,
@@ -15,22 +17,25 @@ const PropertyDetailsPage = async ({
   const result = await getSingleProperty(id);
   const property = result?.data?.result;
 
+  const user = await getMe();
+  // console.log("USER:", user);
+  // console.log("ROLE:", user?.data?.role);
+  // console.log("STATUS:", property.availabilityStatus);
+
   if (!property) {
     return notFound();
   }
 
   return (
-    <section className="container mx-auto px-4 py-8 max-w-6xl">
-      <Card className="overflow-hidden border border-slate-200/80 shadow-md bg-white rounded">
-        {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 min-h-[420px]">
-          {/* LEFT SIDE: Image / Visual Area */}
-          <div className="md:col-span-5 relative bg-slate-50 flex items-center justify-center p-6 border-b md:border-b-0 md:border-r border-slate-100 min-h-[220px] md:min-h-full">
-            <div className="p-4 rounded-full bg-slate-100/80 text-slate-400">
+    <section className="container mx-auto max-w-6xl px-4 py-8">
+      <Card className="overflow-hidden rounded border border-slate-200/80 bg-white shadow-md">
+        <div className="grid min-h-[420px] grid-cols-1 md:grid-cols-12">
+          {/* Left Side */}
+          <div className="relative flex min-h-[220px] items-center justify-center border-b border-slate-100 bg-slate-50 p-6 md:col-span-5 md:min-h-full md:border-r md:border-b-0">
+            <div className="rounded-full bg-slate-100/80 p-4 text-slate-400">
               <Home className="h-14 w-14" />
             </div>
 
-            {/* Status Badge */}
             <div className="absolute top-3 left-3">
               <Badge
                 variant={
@@ -38,9 +43,9 @@ const PropertyDetailsPage = async ({
                     ? "default"
                     : "secondary"
                 }
-                className={`px-2.5 py-0.5 text-[11px] font-medium tracking-wide uppercase shadow-none ${
+                className={`px-2.5 py-0.5 text-[11px] font-medium uppercase ${
                   property.availabilityStatus === "AVAILABLE"
-                    ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+                    ? "bg-emerald-600 text-white"
                     : "bg-amber-500 text-white"
                 }`}
               >
@@ -49,64 +54,60 @@ const PropertyDetailsPage = async ({
             </div>
           </div>
 
-          {/* RIGHT SIDE: Compact Content Area */}
-          <div className="md:col-span-7 p-6 flex flex-col justify-between space-y-5">
+          {/* Right Side */}
+          <div className="flex flex-col justify-between space-y-5 p-6 md:col-span-7">
             <div className="space-y-4">
-              {/* Type & Title */}
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-1.5 text-xs text-indigo-600 font-medium">
+              <div>
+                <div className="mb-2 flex items-center gap-2 text-xs font-medium text-indigo-600">
                   <Tag size={13} />
-                  <span>{property.propertyType}</span>
+                  {property.propertyType}
                 </div>
-                <h1 className="text-xl md:text-2xl text-slate-900 font-bold tracking-tight">
+
+                <h1 className="text-2xl font-bold text-slate-900">
                   {property.title}
                 </h1>
               </div>
 
-              {/* Location & Price Strip */}
-              <div className="flex flex-wrap items-center justify-between gap-2 py-3 px-3.5 bg-slate-50/80 rounded-lg border border-slate-100">
-                <div className="flex items-center gap-1.5 text-slate-600 text-xs sm:text-sm">
-                  <MapPin size={15} className="text-slate-400 shrink-0" />
-                  <span>{property.location}</span>
+              <div className="flex flex-wrap items-center justify-between rounded-lg border border-slate-100 bg-slate-50 p-4">
+                <div className="flex items-center gap-2 text-slate-600">
+                  <MapPin size={16} />
+                  {property.location}
                 </div>
 
-                <div className="flex items-baseline text-lg sm:text-xl font-bold text-slate-900">
-                  <span className="text-indigo-600 mr-0.5 text-sm">৳</span>
-                  {property.price?.toLocaleString()}
-                  <span className="text-[11px] font-normal text-slate-500 ml-1">
+                <div className="text-2xl font-bold text-indigo-600">
+                  ৳ {property.price?.toLocaleString()}
+                  <span className="ml-1 text-sm font-normal text-slate-500">
                     / month
                   </span>
                 </div>
               </div>
 
-              {/* Description */}
-              <div className="space-y-1">
-                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              <div>
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Description
                 </h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+
+                <p className="leading-7 text-slate-600">
                   {property.description}
                 </p>
               </div>
 
-              {/* Amenities */}
-              {property.amenities && property.amenities.length > 0 && (
-                <div className="space-y-1.5 pt-1">
-                  <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              {property.amenities?.length > 0 && (
+                <div>
+                  <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Amenities
                   </h3>
-                  <div className="grid grid-cols-2 gap-1.5">
+
+                  <div className="grid grid-cols-2 gap-3">
                     {property.amenities.map(
                       (amenity: string, index: number) => (
                         <div
                           key={index}
-                          className="flex items-center gap-1.5 text-slate-700 bg-slate-50 px-2.5 py-1.5 rounded-md border border-slate-100"
+                          className="flex items-center gap-2 rounded-md border border-slate-100 bg-slate-50 p-2"
                         >
-                          <CheckCircle2
-                            size={13}
-                            className="text-emerald-500 shrink-0"
-                          />
-                          <span className="text-xs font-medium">{amenity}</span>
+                          <CheckCircle2 size={14} className="text-green-600" />
+
+                          <span className="text-sm">{amenity}</span>
                         </div>
                       ),
                     )}
@@ -115,20 +116,18 @@ const PropertyDetailsPage = async ({
               )}
             </div>
 
-            {/* Bottom Actions & Security Note */}
-            <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
-                <ShieldCheck size={15} className="text-indigo-500 shrink-0" />
-                <span>Verified Listing</span>
+            {/* Bottom */}
+            <div className="flex items-center justify-between border-t border-slate-100 pt-5">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
+                <ShieldCheck size={16} className="text-indigo-600" />
+                Verified Listing
               </div>
 
-              <Button
-                size="sm"
-                disabled={property.availabilityStatus !== "AVAILABLE"}
-                className="px-5 py-2 text-xs sm:text-sm font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-all disabled:opacity-50"
-              >
-                Request Booking
-              </Button>
+              {user?.success &&
+                user?.data?.result.role === "TENANT" &&
+                property.availabilityStatus === "AVAILABLE" && (
+                  <RequestRentalButton propertyId={property.id} />
+                )}
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 
+import Footer from "@/components/shared/footer";
 import { Navbar } from "@/components/shared/navber";
 import { getMe } from "@/service/getMe";
 
@@ -10,6 +11,8 @@ const PublicLayout = async ({ children }: { children: React.ReactNode }) => {
     <div>
       <Navbar user={user} />
       {children}
+
+      <Footer/>
     </div>
   );
 };
