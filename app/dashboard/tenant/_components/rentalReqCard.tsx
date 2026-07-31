@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import PaymentButton from "../rentals/_components/paymentButton";
 
 export default function RentalRequestCard({ rental }: { rental: any }) {
   const property = rental.properties;
+  console.log(rental);
 
   return (
     <Card>
@@ -13,7 +15,11 @@ export default function RentalRequestCard({ rental }: { rental: any }) {
 
         <p>৳ {property.price}</p>
 
-        <Badge>{rental.rentalStatus}</Badge>
+        <Badge>
+          {rental.rentalStatus === "APPROVED" && (
+            <PaymentButton rentalRequestId={rental.id} />
+          )}
+        </Badge>
       </CardContent>
     </Card>
   );

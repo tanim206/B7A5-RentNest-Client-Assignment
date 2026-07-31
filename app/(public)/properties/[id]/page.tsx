@@ -18,9 +18,6 @@ const PropertyDetailsPage = async ({
   const property = result?.data?.result;
 
   const user = await getMe();
-  // console.log("USER:", user);
-  // console.log("ROLE:", user?.data?.role);
-  // console.log("STATUS:", property.availabilityStatus);
 
   if (!property) {
     return notFound();

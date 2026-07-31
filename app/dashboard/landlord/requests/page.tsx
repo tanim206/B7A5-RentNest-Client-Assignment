@@ -1,5 +1,8 @@
-import { getLandlordRequests } from "../../landlord/request/_actions/getLandlordRequests";
-import RequestCard from "../../landlord/request/_components/RequestCard";
+// import { getLandlordRequests } from "../../landlord/request/_actions/getLandlordRequests";
+// import RequestCard from "../../landlord/request/_components/RequestCard";
+
+import { getLandlordRequests } from "./_actions/getLandlordRequests";
+import RequestCard from "./_components/RequestCard";
 
 export default async function LandlordRequestsPage() {
   const result = await getLandlordRequests();

@@ -3,7 +3,7 @@ import RentalRequestCard from "../_components/rentalReqCard";
 
 const TenantRentalRequestPage = async () => {
   const result = await getRentalRequests();
-
+ 
   const rentals = result?.data || [];
 
   return (
