@@ -31,7 +31,7 @@ export function proxy(request: NextRequest) {
     }
 
     if (userRole === "LANDLORD") {
-      return NextResponse.redirect(new URL("/dashboard/landlord", request.url));
+      return NextResponse.redirect(new URL("/dashboard/landlord/properties", request.url));
     }
 
     if (userRole === "ADMIN") {
@@ -57,7 +57,7 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/not-found", request.url));
   }
 
-  if (pathname.startsWith("/dashboard/landlord") && userRole !== "LANDLORD") {
+  if (pathname.startsWith("/dashboard/landlord/properties") && userRole !== "LANDLORD") {
     return NextResponse.redirect(new URL("/not-found", request.url));
   }
 

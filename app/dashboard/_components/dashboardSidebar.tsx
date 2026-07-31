@@ -45,7 +45,7 @@ export default function DashboardSidebar({ user }: NavbarProps) {
                       isActive={active}
                       className={`h-12 rounded-xl transition-all duration-200 ${
                         active
-                          ? "bg-black text-white shadow-md"
+                          ? "bg-black text-white shadow"
                           : "text-slate-600 hover:bg-slate-100 hover:text-black"
                       }`}
                     >

@@ -1,6 +1,7 @@
 import DashboardPropertyCard from "../_components/landloadPropertyCard";
 import { IProperty } from "@/lib/types";
 import { getlandloardProperties } from "./_actions/landloadgetProperty";
+// import { getlandloardProperties } from "./_actions/landloadgetProperty";
 
 const landloardPropertiesPage = async () => {
   const result = await getlandloardProperties();
@@ -16,7 +17,7 @@ const landloardPropertiesPage = async () => {
 
       {properties.length === 0 ? (
         <div className="rounded-xl border py-20 text-center">
-          <h2 className="text-xl font-semibold">No Property Founhgjhghgd</h2>
+          <h2 className="text-xl font-semibold">No Property Found</h2>
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">

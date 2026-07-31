@@ -9,11 +9,6 @@ import {
 
 export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
-    label: "Dashboard",
-    href: "/dashboard/landlord",
-    icon: LayoutDashboard,
-  },
-  {
     label: "My Properties",
     href: "/dashboard/landlord/properties",
     icon: Building2,

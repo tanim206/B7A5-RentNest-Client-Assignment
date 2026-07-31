@@ -47,7 +47,7 @@ export function Navbar({ user }: NavbarProps) {
         if (role === "TENANT") {
           router.push("/dashboard/tenant");
         } else if (role === "LANDLORD") {
-          router.push("/dashboard/landlord");
+          router.push("/dashboard/landlord/properties");
         } else if (role === "ADMIN") {
           router.push("/dashboard/admin");
         } else {
