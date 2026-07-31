@@ -1,5 +1,5 @@
 import { ISidebarItem } from "@/lib/types";
-import { FileText, LayoutDashboard } from "lucide-react";
+import { FileText, LayoutDashboard, User } from "lucide-react";
 
 export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
@@ -7,6 +7,7 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
     href: "/dashboard",
     icon: LayoutDashboard,
   },
+
   {
     label: "Rental Request",
     href: "/dashboard/tenant/rentals",

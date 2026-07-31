@@ -2,7 +2,7 @@ import { getMe } from "@/service/getMe"; // আপনার getMe অ্যা�
 
 import { Suspense } from "react";
 import ProfileSkeleton from "./_components/profileSkeleton";
-import ProfileUI from "./_components/profileUI";
+import ProfileUI from "./_components/profileUi";
 
 export default async function ProfilePage() {
   const profileData = await getMe();

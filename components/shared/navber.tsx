@@ -56,7 +56,7 @@ export function Navbar({ user }: NavbarProps) {
         break;
       }
       case "profile":
-        router.push("/auth/me");
+        router.push("/dashboard/profile");
         break;
       case "settings":
         router.push("/settings");
