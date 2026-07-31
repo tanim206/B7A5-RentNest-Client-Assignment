@@ -13,7 +13,6 @@ import {
 import { LayoutDashboard, LogOut, Settings, User, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import { logout } from "@/service/logout";
 import { IProfile } from "@/lib/types";
 import { Button } from "../ui/button";
@@ -42,35 +41,32 @@ export function Navbar({ user }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleUserMenuAction = async (action: string) => {
-    if (action === "dashboard") {
-      const role = user?.data?.result?.role;
-      if (role === "TENANT") {
-        router.push("/dashboard/tenant");
-      } else if (role === "LANDLORD") {
-        router.push("/dashboard/landlord");
-      } else if (role === "ADMIN") {
-        router.push("/dashboard/admin");
+    switch (action) {
+      case "dashboard": {
+        const role = user?.data?.result?.role;
+        if (role === "TENANT") {
+          router.push("/dashboard/tenant");
+        } else if (role === "LANDLORD") {
+          router.push("/dashboard/landlord");
+        } else if (role === "ADMIN") {
+          router.push("/dashboard/admin");
+        } else {
+          router.push("/dashboard");
+        }
+        break;
       }
-      return;
-    }
-
-    if (action === "profile") {
-      router.push("/profile");
-      return;
-    }
-    if (action === "dashboard") {
-      router.push("/dashboard");
-      return;
-    }
-
-    if (action === "settings") {
-      router.push("/settings");
-      return;
-    }
-
-    if (action === "logout") {
-      await logout();
-      router.push("/");
+      case "profile":
+        router.push("/auth/me");
+        break;
+      case "settings":
+        router.push("/settings");
+        break;
+      case "logout":
+        await logout();
+        router.push("/");
+        break;
+      default:
+        break;
     }
   };
 
