@@ -1,197 +1,240 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Building2,
-  Home,
   ShieldCheck,
   Users,
   Search,
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
   HeartHandshake,
-  BadgeCheck,
+  Target,
+  Compass,
 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function AboutPage() {
+  const stats = [
+    { label: "Active Properties", value: "2,500+" },
+    { label: "Happy Tenants", value: "10,000+" },
+    { label: "Verified Landlords", value: "1,200+" },
+    { label: "Cities Covered", value: "15+" },
+  ];
+
   const features = [
     {
-      icon: Search,
-      title: "Easy Property Search",
+      icon: <ShieldCheck className="w-6 h-6 text-[#1868cd]" />,
+      title: "Verified Listings",
       description:
-        "Find apartments, houses, and rental properties with powerful search and filtering.",
+        "Every property and landlord is thoroughly verified to ensure safety and prevent fake listings.",
     },
     {
-      icon: ShieldCheck,
-      title: "Secure Platform",
+      icon: <Search className="w-6 h-6 text-[#1868cd]" />,
+      title: "Smart Search & Filters",
       description:
-        "Verified landlords and secure booking process ensure a trusted experience.",
+        "Easily find your dream home using advanced filters like price range, location, and property type.",
     },
     {
-      icon: Building2,
-      title: "Verified Properties",
+      icon: <HeartHandshake className="w-6 h-6 text-[#1868cd]" />,
+      title: "Seamless Communication",
       description:
-        "Browse quality properties with complete details and transparent pricing.",
-    },
-    {
-      icon: HeartHandshake,
-      title: "Trusted Community",
-      description:
-        "Connecting landlords and tenants with confidence and convenience.",
+        "Connect directly with landlords or tenants, manage rental requests, and handle agreements effortlessly.",
     },
   ];
 
+  const values = [
+    "Transparency in all rental processes",
+    "Zero hidden fees for tenants",
+    "Secure & instant rental requests",
+    "Dedicated 24/7 customer support",
+  ];
+
   return (
-    <main className="bg-slate-50">
-      {/* Hero */}
-      <section className="container mx-auto px-6 py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700">
-            About RentNest
-          </span>
-
-          <h1 className="mt-6 text-5xl font-extrabold tracking-tight">
-            Find Your Perfect Home With Confidence
-          </h1>
-
-          <p className="mt-6 text-lg text-muted-foreground">
-            RentNest is a modern property rental platform connecting trusted
-            landlords with verified tenants. Our mission is to simplify renting
-            by making property discovery, booking, and management secure,
-            transparent, and effortless.
-          </p>
-
-          <Button size="lg" className="mt-8">
-            Explore Properties
-          </Button>
-        </div>
-      </section>
-
-      {/* About */}
-      <section className="container mx-auto grid gap-10 px-6 py-20 lg:grid-cols-2">
-        <div>
-          <h2 className="text-4xl font-bold">Who We Are</h2>
-
-          <p className="mt-6 leading-8 text-muted-foreground">
-            RentNest is designed to create a seamless experience for both
-            landlords and tenants. Whether you're looking for your dream
-            apartment or managing multiple rental properties, our platform
-            provides all the tools needed to make renting simple and efficient.
-          </p>
-
-          <p className="mt-5 leading-8 text-muted-foreground">
-            From property listings and secure booking requests to real-time
-            management and transparent communication, RentNest brings everything
-            together in one place.
-          </p>
-        </div>
-
-        <Card className="rounded-3xl">
-          <CardContent className="flex h-full items-center justify-center p-16">
-            <Home className="h-40 w-40 text-green-600" />
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Features */}
-      <section className="container mx-auto px-6 py-20">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold">What Makes RentNest Different?</h2>
-
-          <p className="mt-4 text-muted-foreground">
-            Everything you need for a smooth rental experience.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-          {features.map((item) => (
-            <Card
-              key={item.title}
-              className="rounded-2xl transition hover:-translate-y-2 hover:shadow-xl"
+    <div className="min-h-screen bg-slate-50/50">
+      {/* 1. HERO SECTION */}
+      <section className="relative overflow-hidden bg-white border-b border-slate-100 py-16 sm:py-24">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+            <Badge
+              variant="outline"
+              className="bg-blue-50 text-[#1868cd] border-blue-200 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5"
             >
-              <CardContent className="space-y-5 p-8">
-                <item.icon className="h-12 w-12 text-green-600" />
+              <Sparkles size={14} /> Reimagining Rental Solutions
+            </Badge>
 
-                <h3 className="text-xl font-semibold">{item.title}</h3>
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Finding Your Next Home Should Be{" "}
+              <span className="text-[#1868cd]">Simple & Transparent</span>
+            </h1>
 
-                <p className="text-muted-foreground">{item.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              We connect tenants with verified landlords directly—eliminating
+              middleman hassles, hidden fees, and fraudulent listings.
+              Modernizing rent management for everyone.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              <Button
+                asChild
+                className="bg-[#1868cd] hover:bg-[#1455a8] text-white font-semibold rounded-xl px-6 h-11 shadow-md shadow-blue-500/20"
+              >
+                <Link href="/properties" className="flex items-center gap-2">
+                  Browse Properties <ArrowRight size={16} />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl px-6 h-11"
+              >
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-green-600 py-20 text-white">
-        <div className="container mx-auto grid gap-10 px-6 text-center md:grid-cols-4">
-          <div>
-            <h3 className="text-5xl font-bold">500+</h3>
-            <p className="mt-3">Properties Listed</p>
-          </div>
-
-          <div>
-            <h3 className="text-5xl font-bold">120+</h3>
-            <p className="mt-3">Verified Landlords</p>
-          </div>
-
-          <div>
-            <h3 className="text-5xl font-bold">1000+</h3>
-            <p className="mt-3">Happy Tenants</p>
-          </div>
-
-          <div>
-            <h3 className="text-5xl font-bold">99%</h3>
-            <p className="mt-3">Customer Satisfaction</p>
+      {/* 2. STATS SECTION */}
+      <section className="py-12 bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="space-y-1 p-4 rounded-2xl bg-slate-50/60 border border-slate-100"
+              >
+                <p className="text-2xl sm:text-4xl font-extrabold text-[#1868cd]">
+                  {stat.value}
+                </p>
+                <p className="text-xs sm:text-sm font-medium text-slate-500">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="container mx-auto grid gap-8 px-6 py-20 lg:grid-cols-2">
-        <Card className="rounded-3xl">
-          <CardContent className="p-10">
-            <BadgeCheck className="mb-6 h-12 w-12 text-green-600" />
+      {/* 3. MISSION & VISION SECTION */}
+      <section className="py-16 sm:py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left Box: Mission */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#1868cd] flex items-center justify-center">
+                <Target size={24} />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900">Our Mission</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                To empower house hunters and landlords with an intuitive,
+                reliable, and secure platform that makes renting property as
+                effortless as a few clicks.
+              </p>
+            </div>
 
-            <h2 className="text-3xl font-bold">Our Mission</h2>
-
-            <p className="mt-5 leading-8 text-muted-foreground">
-              To provide a transparent, secure, and user-friendly platform where
-              landlords and tenants can connect without hassle.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="rounded-3xl">
-          <CardContent className="p-10">
-            <Users className="mb-6 h-12 w-12 text-green-600" />
-
-            <h2 className="text-3xl font-bold">Our Vision</h2>
-
-            <p className="mt-5 leading-8 text-muted-foreground">
-              To become the most trusted rental platform by delivering reliable
-              services, verified listings, and a seamless rental journey.
-            </p>
-          </CardContent>
-        </Card>
+            {/* Right Box: Vision */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#1868cd] flex items-center justify-center">
+                <Compass size={24} />
+              </div>
+              <h2 className="text-xl font-bold text-slate-900">Our Vision</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                To become the most trusted real-estate marketplace, creating a
+                transparent ecosystem where renting is completely hassle-free,
+                secure, and accessible to all.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* CTA */}
-      <section className="container mx-auto px-6 pb-24">
-        <Card className="rounded-3xl bg-green-600 text-white">
-          <CardContent className="py-20 text-center">
-            <h2 className="text-4xl font-bold">
-              Ready to Find Your Next Home?
+      {/* 4. CORE FEATURES SECTION */}
+      <section className="py-16 bg-white border-y border-slate-100">
+        <div className="container mx-auto px-4 max-w-7xl space-y-12">
+          <div className="text-center space-y-3 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+              Why Choose Our Platform?
             </h2>
-
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-green-100">
-              Explore hundreds of verified rental properties and connect with
-              trusted landlords through RentNest.
+            <p className="text-slate-500 text-sm">
+              We combine modern technology with user-centric design to deliver
+              an unparalleled rental experience.
             </p>
+          </div>
 
-            <Button asChild size="lg" variant="secondary" className="mt-8">
-              <Link href="/properties">Browse Properties</Link>
-            </Button>
-          </CardContent>
-        </Card>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-2xl border border-slate-200/80 bg-slate-50/30 hover:bg-white hover:shadow-md transition-all duration-300 space-y-3"
+              >
+                <div className="p-3 w-fit rounded-xl bg-blue-50 border border-blue-100">
+                  {feature.icon}
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
-    </main>
+
+      {/* 5. COMMITMENT & VALUES SECTION */}
+      <section className="py-16 sm:py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-8 sm:p-12 shadow-xl grid lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <Badge className="bg-blue-500/20 text-blue-300 border-blue-400/30 px-3 py-1 text-xs">
+                Our Guarantee
+              </Badge>
+              <h2 className="text-2xl sm:text-4xl font-bold leading-tight">
+                Built on Trust, Reliability & Convenience
+              </h2>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Whether you are a tenant looking for a comfortable home or a
+                landlord seeking trustworthy occupants, our platform bridges the
+                gap safely.
+              </p>
+            </div>
+
+            <div className="space-y-3 bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10">
+              {values.map((value, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <span className="text-xs sm:text-sm text-slate-200 font-medium">
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CALL TO ACTION (CTA) */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="container mx-auto px-4 max-w-7xl text-center space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+            Ready to Find Your Next Home?
+          </h2>
+          <p className="text-slate-500 text-sm max-w-xl mx-auto">
+            Join thousands of happy tenants and landlords today. Browse our
+            available property listings now.
+          </p>
+          <div className="pt-2">
+            <Button
+              asChild
+              className="bg-[#1868cd] hover:bg-[#1455a8] text-white font-semibold rounded-xl px-8 h-12 shadow-lg shadow-blue-500/20"
+            >
+              <Link href="/properties">Explore Properties</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

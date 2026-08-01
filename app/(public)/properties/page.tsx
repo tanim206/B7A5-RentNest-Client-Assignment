@@ -13,9 +13,9 @@ const PropertiesPage = async () => {
   return (
     <section className="container mx-auto px-4 py-10">
       <div className="mb-10">
-        <h1 className="text-4xl font-bold">Available Properties</h1>
+        <h1 className="text-4xl font-bold">Properties</h1>
         <p className="mt-2 text-muted-foreground">
-          Browse all available rental properties.
+          Browse all rental properties.
         </p>
       </div>
 

@@ -20,20 +20,26 @@ export default async function AdminPage() {
     : rentalRequestsResult?.data?.result || [];
 
   return (
-    <section className="container mx-auto space-y-6 py-8">
-      <div>
-        <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-        <p className="text-muted-foreground">
-          Monitor properties, rental requests, and users from one place.
+    <section className="container mx-auto space-y-8 py-8 px-4 max-w-7xl">
+      {/* Header Section */}
+      <div className="border-b border-slate-100 pb-5">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          Admin Dashboard
+        </h1>
+        <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          Monitor properties, rental requests, and users from a single unified
+          workspace.
         </p>
       </div>
 
+      {/* Analytics Overview Cards */}
       <AdminOverviewCards
         propertiesCount={properties.length}
         rentalRequestsCount={rentalRequests.length}
         usersCount={users.length}
       />
 
+      {/* Lists Grid */}
       <div className="grid gap-6 lg:grid-cols-2">
         <AdminPropertyList properties={properties} />
         <AdminRentalRequestList requests={rentalRequests} />

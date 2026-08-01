@@ -1,117 +1,122 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
-export default function ContactPage() {
+export default function ContactSection() {
   return (
-    <section className="container mx-auto px-4 py-16">
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold">Contact Us</h1>
-
-        <p className="mt-3 text-muted-foreground">
-          Have questions or need help? We'd love to hear from you.
-        </p>
-      </div>
-
-      <div className="grid gap-8 lg:grid-cols-3">
-        {/* Contact Information */}
-        <div className="space-y-6">
-          <Card>
-            <CardContent className="flex items-start gap-4 p-6">
-              <MapPin className="mt-1 h-6 w-6 text-primary" />
-
-              <div>
-                <h3 className="font-semibold">Office Address</h3>
-
-                <p className="mt-1 text-sm text-muted-foreground">
-                  House #15, Road #08,
-                  <br />
-                  Mirpur, Dhaka 1216,
-                  <br />
-                  Bangladesh
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="flex items-start gap-4 p-6">
-              <Mail className="mt-1 h-6 w-6 text-primary" />
-
-              <div>
-                <h3 className="font-semibold">Email</h3>
-
-                <p className="mt-1 text-sm text-muted-foreground">
-                  support@rentnest.com
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="flex items-start gap-4 p-6">
-              <Clock className="mt-1 h-6 w-6 text-primary" />
-
-              <div>
-                <h3 className="font-semibold">Working Hours</h3>
-
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Saturday - Thursday
-                  <br />
-                  9:00 AM - 6:00 PM
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+    <section className="bg-slate-50 py-16 md:py-24">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+            Get in Touch
+          </h2>
+          <p className="text-sm text-slate-500 leading-relaxed">
+            Have questions about a property or need assistance? Reach out to us
+            and our team will get back to you shortly.
+          </p>
         </div>
 
-        {/* Contact Form */}
-        <div className="lg:col-span-2">
-          <Card>
-            <CardContent className="p-8">
-              <h2 className="mb-6 text-2xl font-bold">Send us a Message</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* Info Cards Side */}
+          <div className="space-y-4 lg:col-span-1">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+              <div className="h-10 w-10 rounded-xl bg-blue-50 text-[#1868cd] flex items-center justify-center shrink-0">
+                <Phone size={20} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">Call Us</h4>
+                <p className="text-xs text-slate-500 mt-1">+880 1700-000000</p>
+                <p className="text-xs text-slate-400">Mon - Sat, 9am - 8pm</p>
+              </div>
+            </div>
 
-              <form className="space-y-5">
-                <div className="grid gap-5 md:grid-cols-2">
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      Full Name
-                    </label>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+              <div className="h-10 w-10 rounded-xl bg-blue-50 text-[#1868cd] flex items-center justify-center shrink-0">
+                <Mail size={20} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">Email Us</h4>
+                <p className="text-xs text-slate-500 mt-1">
+                  support@rentalhome.com
+                </p>
+                <p className="text-xs text-slate-400">
+                  Response within 24 hours
+                </p>
+              </div>
+            </div>
 
-                    <Input placeholder="Enter your name" />
-                  </div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+              <div className="h-10 w-10 rounded-xl bg-blue-50 text-[#1868cd] flex items-center justify-center shrink-0">
+                <MapPin size={20} />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-slate-900">
+                  Office Address
+                </h4>
+                <p className="text-xs text-slate-500 mt-1">
+                  Gulshan, Dhaka, Bangladesh
+                </p>
+              </div>
+            </div>
+          </div>
 
-                  <div>
-                    <label className="mb-2 block text-sm font-medium">
-                      Email
-                    </label>
-
-                    <Input type="email" placeholder="Enter your email" />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium">
-                    Subject
+          {/* Form Side */}
+          <div className="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm lg:col-span-2">
+            <form className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-700">
+                    Full Name
                   </label>
-
-                  <Input placeholder="Subject" />
+                  <input
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#1868cd]/20 focus:border-[#1868cd] transition-all"
+                  />
                 </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-medium">
-                    Message
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-700">
+                    Email Address
                   </label>
-
-                  <Textarea rows={6} placeholder="Write your message..." />
+                  <input
+                    type="email"
+                    placeholder="john@example.com"
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#1868cd]/20 focus:border-[#1868cd] transition-all"
+                  />
                 </div>
+              </div>
 
-                <Button className="w-full md:w-auto">Send Message</Button>
-              </form>
-            </CardContent>
-          </Card>
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-700">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  placeholder="Inquiry about rental properties"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#1868cd]/20 focus:border-[#1868cd] transition-all"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-slate-700">
+                  Message
+                </label>
+                <textarea
+                  rows={4}
+                  placeholder="Write your message here..."
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#1868cd]/20 focus:border-[#1868cd] transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full sm:w-auto rounded-xl bg-[#1868cd] hover:bg-slate-900 text-white px-8 py-3 text-xs font-semibold flex items-center justify-center gap-2 transition-all duration-300"
+              >
+                <Send size={14} />
+                Send Message
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

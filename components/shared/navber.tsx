@@ -71,12 +71,49 @@ export function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="border-b bg-white text-black border-border sticky top-0 z-50">
+    <nav className="border-b bg-white border-slate-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="shrink-0">
-            <span className="text-2xl font-bold text-primary">rentNest</span>
+        <div className="flex items-center justify-between h-20">
+          {/* Logo with Icon as shown in the image */}
+          <Link href="/" className="shrink-0 flex items-center gap-2.5">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-[#1A73E8]"
+            >
+              <path
+                d="M16 4L4 14V26H28V14L16 4Z"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 26V18H20V26"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M14 12H18M14 15H18"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M2 29H30"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="text-2xl tracking-tight text-[#1E293B]">
+              Rentnest
+            </span>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -85,21 +122,21 @@ export function Navbar({ user }: NavbarProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                className="text-[#334155] hover:text-[#1A73E8] transition-colors text-[15px] font-medium"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* Right Action Section (User Profile or Auth Buttons) */}
+          {/* Right Action Section */}
           <div className="hidden md:flex md:items-center md:gap-3">
             {user?.success ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="cursor-pointer outline-none rounded-full p-1 hover:bg-slate-100 transition">
-                    <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                      <User className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center border border-blue-200">
+                      <User className="w-5 h-5 text-[#1A73E8]" />
                     </div>
                   </button>
                 </DropdownMenuTrigger>
@@ -141,12 +178,17 @@ export function Navbar({ user }: NavbarProps) {
             ) : (
               <div className="flex items-center gap-3">
                 <Link href="/auth/login">
-                  <Button variant="outline" size="sm">
-                    Login
+                  <Button
+                    variant="outline"
+                    className="border-slate-300 text-slate-700 hover:bg-slate-50 font-medium px-5 rounded-lg h-10"
+                  >
+                    Log in
                   </Button>
                 </Link>
                 <Link href="/auth/register">
-                  <Button size="sm">Sign up</Button>
+                  <Button className="bg-[#1A73E8] hover:bg-[#1557B0] text-white font-medium px-5 rounded-lg h-10 shadow-none">
+                    Sign up
+                  </Button>
                 </Link>
               </div>
             )}
@@ -177,7 +219,7 @@ export function Navbar({ user }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-slate-700 hover:text-black text-base font-medium py-1.5 px-2 rounded-md hover:bg-slate-50"
+                className="text-slate-700 hover:text-[#1A73E8] text-base font-medium py-1.5 px-2 rounded-md hover:bg-slate-50"
               >
                 {item.label}
               </Link>
@@ -228,15 +270,20 @@ export function Navbar({ user }: NavbarProps) {
                   href="/auth/login"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Button variant="outline" className="w-full">
-                    Login
+                  <Button
+                    variant="outline"
+                    className="w-full border-slate-300 text-slate-700 hover:bg-slate-50"
+                  >
+                    Log in
                   </Button>
                 </Link>
                 <Link
                   href="/auth/register"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Button className="w-full">Sign up</Button>
+                  <Button className="w-full bg-[#1A73E8] hover:bg-[#1557B0] text-white">
+                    Sign up
+                  </Button>
                 </Link>
               </div>
             )}
