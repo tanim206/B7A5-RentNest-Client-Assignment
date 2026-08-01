@@ -4,7 +4,7 @@ import { FileText, LayoutDashboard, User } from "lucide-react";
 export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
     label: "Dashboard",
-    href: "/dashboard",
+    href: "/dashboard/tenant",
     icon: LayoutDashboard,
   },
 

@@ -9,10 +9,11 @@ import {
 
 export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
-    label: "My Properties",
-    href: "/dashboard/landlord/properties",
-    icon: Building2,
+    label: "Overview",
+    href: "/dashboard/landlord",
+    icon: LayoutDashboard,
   },
+
   {
     label: "Create Property",
     href: "/dashboard/landlord/properties/new",
@@ -22,10 +23,5 @@ export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
     label: "Rental Requests",
     href: "/dashboard/landlord/requests",
     icon: ClipboardList,
-  },
-  {
-    label: "Earnings",
-    href: "/dashboard/landlord/earnings",
-    icon: DollarSign,
   },
 ];
