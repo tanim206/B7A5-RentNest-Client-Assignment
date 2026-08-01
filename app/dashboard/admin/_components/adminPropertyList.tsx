@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import PropertyDetailsDialog from "./propertyDetailsDialog";
+import { IProperty } from "@/lib/types";
 
 export default function AdminPropertyList({
   properties,
 }: {
-  properties: any[];
+  properties: IProperty[];
 }) {
   return (
     <div className="rounded-xl border bg-white p-4 shadow-sm">
@@ -42,6 +44,7 @@ export default function AdminPropertyList({
                 >
                   {property.availabilityStatus}
                 </Badge>
+                <PropertyDetailsDialog property={property} />
               </div>
             </div>
           ))

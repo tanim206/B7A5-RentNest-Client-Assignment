@@ -5,13 +5,11 @@ import {
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { ISidebarItem, NavbarProps } from "@/lib/types";
-import { Home } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { sidebarMenuItems } from "../_config/sidebarManuItems";
@@ -21,20 +19,22 @@ export default function DashboardSidebar({ user }: NavbarProps) {
 
   let navItems: ISidebarItem[] = [];
 
-  if (user.data.result.role === "TENANT") {
+  const role = user?.data?.result?.role;
+
+  if (role === "TENANT") {
     navItems = sidebarMenuItems.TENANT;
-  } else if (user.data.result.role === "LANDLORD") {
+  } else if (role === "LANDLORD") {
     navItems = sidebarMenuItems.LANDLORD;
-  } else if (user.data.result.role === "ADMIN") {
+  } else if (role === "ADMIN") {
     navItems = sidebarMenuItems.ADMIN;
   }
 
   return (
-    <Sidebar className="fixed left-0 top-16 z-40 h-[calc(100vh-4rem)] w-64 border-r bg-white">
-      <SidebarContent className="px-3 py-5">
+    <Sidebar collapsible="icon" className="top-16 h-[calc(100vh-4rem)]">
+      <SidebarContent className="p-2">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="space-y-2">
+            <SidebarMenu className="space-y-1">
               {navItems.map((item) => {
                 const active = pathname === item.href;
 
@@ -43,9 +43,10 @@ export default function DashboardSidebar({ user }: NavbarProps) {
                     <SidebarMenuButton
                       asChild
                       isActive={active}
-                      className={`h-12 rounded-xl transition-all duration-200 ${
+                      tooltip={item.label}
+                      className={`h-11 rounded-xl transition-all duration-200 ${
                         active
-                          ? "bg-black text-white shadow"
+                          ? "bg-black text-white hover:bg-black hover:text-white"
                           : "text-slate-600 hover:bg-slate-100 hover:text-black"
                       }`}
                     >
@@ -53,8 +54,7 @@ export default function DashboardSidebar({ user }: NavbarProps) {
                         href={item.href}
                         className="flex items-center gap-3"
                       >
-                        <item.icon className="h-5 w-5" />
-
+                        <item.icon className="h-5 w-5 shrink-0" />
                         <span className="font-medium">{item.label}</span>
                       </Link>
                     </SidebarMenuButton>

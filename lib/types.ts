@@ -70,6 +70,12 @@ export interface IProperty {
   amenities: string[];
   image?: string[];
   landlordId: string;
+  landlord?: {
+    id: string;
+    name: string;
+    email: string;
+    phone?: string | null;
+  };
   categoryId: string | null;
   createdAt: string;
   updatedAt: string;

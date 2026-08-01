@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/shared/navber";
 import { getMe } from "@/service/getMe";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export default async function RootLayout({
       >
         <Toaster position="bottom-right" />
 
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );

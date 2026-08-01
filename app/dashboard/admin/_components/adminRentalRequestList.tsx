@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import RentalRequestDetailsDialog from "./rentalRequestDetailsDialog";
 
 export default function AdminRentalRequestList({
   requests,
@@ -26,7 +27,10 @@ export default function AdminRentalRequestList({
                   Tenant: {request.tenant?.name || "Unknown"}
                 </p>
               </div>
-              <Badge variant="outline">{request.rentalStatus}</Badge>
+              <div className="flex items-center gap-2">
+                <Badge variant="outline">{request.rentalStatus}</Badge>
+                <RentalRequestDetailsDialog request={request} />
+              </div>
             </div>
           ))
         ) : (

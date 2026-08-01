@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import PaymentButton from "../../../tenant/rentals/_components/paymentButton";
 import { updateRentalStatus } from "../_actions/updateRentalStatus";
 import { toast } from "sonner";
 import {
@@ -134,7 +135,7 @@ export default function RequestCard({ rental }: { rental: any }) {
           </div>
 
           {/* Right Section - Actions */}
-          <div className="flex flex-col items-end gap-3 min-w-[140px] w-full lg:w-auto">
+          <div className="flex flex-col items-end gap-3 min-w-35 w-full lg:w-auto">
             {status === "PENDING" && (
               <div className="flex flex-col sm:flex-row lg:flex-col gap-2 w-full">
                 <Button
@@ -169,11 +170,14 @@ export default function RequestCard({ rental }: { rental: any }) {
             )}
 
             {status === "APPROVED" && (
-              <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-lg border border-emerald-200 w-full justify-center">
-                <CheckCircle className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm font-medium text-emerald-700">
-                  Approved
-                </span>
+              <div className="flex w-full flex-col gap-2">
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2 justify-center">
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
+                  <span className="text-sm font-medium text-emerald-700">
+                    Approved
+                  </span>
+                </div>
+                <PaymentButton rentalRequestId={rental.id} />
               </div>
             )}
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PaymentButton from "../tenant/rentals/_components/paymentButton";
 import { getlandloardProperties } from "./properties/_actions/landloadgetProperty";
 import { getLandlordRequests } from "./requests/_actions/getLandlordRequests";
 
@@ -95,7 +96,7 @@ export default async function LandlordDashboardPage() {
               requests.slice(0, 5).map((request: any) => (
                 <div
                   key={request.id}
-                  className="flex items-center justify-between rounded-lg border p-3"
+                  className="flex flex-col gap-3 rounded-lg border p-3 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <div>
                     <p className="font-medium">
@@ -105,9 +106,16 @@ export default async function LandlordDashboardPage() {
                       {request.tenant?.name || "Tenant"}
                     </p>
                   </div>
-                  <span className="text-sm text-muted-foreground">
-                    {request.rentalStatus}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">
+                      {request.rentalStatus}
+                    </span>
+                    {request.rentalStatus === "APPROVED" && (
+                      <div className="min-w-25">
+                        <PaymentButton rentalRequestId={request.id} />
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))
             ) : (

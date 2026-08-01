@@ -15,7 +15,9 @@ export default async function AdminPage() {
 
   const users = usersResult?.data?.result || [];
   const properties = propertiesResult?.data?.properties || [];
-  const rentalRequests = rentalRequestsResult?.data || [];
+  const rentalRequests = Array.isArray(rentalRequestsResult?.data)
+    ? rentalRequestsResult.data
+    : rentalRequestsResult?.data?.result || [];
 
   return (
     <section className="container mx-auto space-y-6 py-8">
