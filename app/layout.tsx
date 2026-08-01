@@ -26,7 +26,7 @@ export default async function RootLayout({
       <body
         className={`${fontSans.className} min-h-full flex flex-col font-sans`}
       >
-        <Toaster position="top-right" />
+        <Toaster position="bottom-right" />
 
         {children}
       </body>
