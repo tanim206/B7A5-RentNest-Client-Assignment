@@ -11,24 +11,26 @@ type Props = {
 export default function PaymentButton({ rentalRequestId }: Props) {
   const handlePayment = async () => {
     try {
-      const res = await createPayment(rentalRequestId);
+      const result = await createPayment(rentalRequestId);
 
-      console.log("Payment Result:", res);
+      console.log("Payment Result:", result);
 
-      if (!res.success) {
-        toast.error(res.message);
+      if (!result.success) {
+        toast.error(result.message || "Unable to create payment session.");
         return;
       }
 
-      if (res.data?.paymentUrl) {
-        window.location.href = res.data.paymentUrl;
+      if (result.data?.paymentUrl) {
+        window.location.href = result.data.paymentUrl;
         return;
       }
 
-      toast.error("Payment URL not found.");
+      toast.error(
+        result.data?.message || result.message || "Payment URL not found.",
+      );
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong");
+      toast.error("Something went wrong while creating payment.");
     }
   };
 
