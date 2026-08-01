@@ -121,7 +121,7 @@ const PropertyDetailsPage = async ({
               </div>
 
               {user?.success &&
-                user?.data?.result.role === "TENANT" &&
+                user?.data?.result?.id &&
                 property.availabilityStatus === "AVAILABLE" && (
                   <RequestRentalButton propertyId={property.id} />
                 )}

@@ -25,7 +25,7 @@ export const getlandloardProperties = async () => {
       {
         method: "GET",
         headers: {
-          Cookie: `accessToken=${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         cache: "no-store",
       },
@@ -34,7 +34,7 @@ export const getlandloardProperties = async () => {
     const result = await res.json();
 
     return result;
-  } catch (error) {
+  } catch {
     return {
       success: false,
       message: "Failed to fetch properties",
